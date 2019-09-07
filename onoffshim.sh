@@ -105,7 +105,7 @@ RPIGPIO1="raspi-gpio_0.20170105_armhf.deb"
 RPIGPIO2="python-rpi.gpio_0.6.3~jessie-1_armhf.deb"
 RPIGPIO3="python3-rpi.gpio_0.6.3~jessie-1_armhf.deb"
 
-export PIP_FORMAT=legacy
+export PIP_FORMAT=columns
 
 # function define
 
@@ -253,6 +253,8 @@ raspbian_check() {
     if [ -f /etc/os-release ]; then
         if cat /etc/os-release | grep -q "/sid"; then
             IS_SUPPORTED=false && IS_EXPERIMENTAL=true
+        elif cat /etc/os-release | grep -q "buster"; then
+            IS_SUPPORTED=true && IS_EXPERIMENTAL=false
         elif cat /etc/os-release | grep -q "stretch"; then
             IS_SUPPORTED=true && IS_EXPERIMENTAL=false
         elif cat /etc/os-release | grep -q "jessie"; then
